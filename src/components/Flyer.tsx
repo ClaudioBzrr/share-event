@@ -1,6 +1,6 @@
 interface FlyerProps{
     imageUrl:string
-    eventTitle:string,
+    title:string,
     date:Date,
     description:string,
     participants?:string[]
@@ -9,12 +9,13 @@ interface FlyerProps{
 export function Flyer({
     date,
     description,
-    eventTitle,
+    title,
     imageUrl,
     participants
 }:FlyerProps){
     return(
         <div className={`bg-[url(${imageUrl})]`}>
+            <h1>{title}</h1>
             
         </div>
     )
