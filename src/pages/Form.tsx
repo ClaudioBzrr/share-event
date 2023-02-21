@@ -1,17 +1,35 @@
 import { InputCustom } from "../components/InputCustom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { format } from "date-fns";
+import { ButtonCustom } from "../components/ButtonCustom,";
 
 
 export function Form(){
-
+    const inputHidden =  useRef <HTMLInputElement|null>(null)
     const [eventTitle,setEventTitle] =  useState<string>('')
     const [eventDescription,setEventDescription] = useState<string>('')
     const [eventDate,setEventDate] =  useState<string>(format(new Date,'dd/MM/yyyy'))
     const [imageUrl,setImageUrl] =  useState<string>('')
 
+    function handleClickToSelectImage(e:Event){
+        e.preventDefault()
+        inputHidden.current && inputHidden.current.click()
+    }
 
+    function handleSelectImages(image:FileList){
+        if(image.length == 1){
+            const imageBlob =  new Blob([image[0]],{type:'image/bmp'})
+            const imageBlobURL =  URL.createObjectURL(imageBlob)
+            const link =  document.createElement('a')
+            link.href = imageBlobURL
+            const imageUrl = link.download = `image.${image[0].name.slice(-3)}`
+            imageUrl
+            link.click()
+            alert(imageUrl)
+
+        }
+    }
     return(
         <div className="bg-slate-800 h-[100vh] w-[100vw] flex flex-row items-center justify-center">
             <div className="h-[70vh] w-[30vw] border-solid border-slate-900 border-[1px] rounded-xl">
@@ -32,6 +50,20 @@ export function Form(){
                     <InputCustom 
                         placeholder={eventDate}
                         onChange={e => setEventDate(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <ButtonCustom 
+                        title="Escolher foto para o evento"
+                        onClick={e => handleClickToSelectImage(e.nativeEvent)}
+                    />
+                    <input 
+                        ref={inputHidden}
+                        type='file'
+                        accept="image/*"
+                        required
+                        className="hidden"
+                        onChange={e => handleSelectImages(e.target.files!)}
                     />
                 </div>
             </div>

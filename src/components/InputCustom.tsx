@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, MutableRefObject } from "react";
 
 interface InputCustomProps extends InputHTMLAttributes<HTMLInputElement>{
 
