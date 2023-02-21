@@ -2,8 +2,8 @@ import {format} from 'date-fns'
 interface FlyerProps{
     imageUrl:string
     title:string,
-    date:Date,
     description:string,
+    date:Date,
     participants?:string[]
 }
 

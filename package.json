@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-datepicker": "^4.8.0",
     "date-fns": "^2.29.3",
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.1"
+    "react-router-dom": "^6.8.1",
+    "react-tailwindcss-datepicker": "^1.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

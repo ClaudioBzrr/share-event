@@ -1,7 +1,14 @@
+import { InputHTMLAttributes } from "react";
 
+interface InputCustomProps extends InputHTMLAttributes<HTMLInputElement>{
 
-export function InpurtCustom(){
+}
+
+export function InputCustom({...rest}:InputCustomProps){
     return(
-        <input type="text" />
+        <input
+            className="bg-slate-900 rounded-lg text-[#fff] text-center  "
+            {...rest}
+        />
     )
 }
