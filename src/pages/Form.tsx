@@ -1,6 +1,5 @@
 import { InputCustom } from "../components/InputCustom";
 import { useRef, useState } from "react";
-import Datepicker from "react-tailwindcss-datepicker";
 import { format } from "date-fns";
 import { ButtonCustom } from "../components/ButtonCustom,";
 
@@ -21,13 +20,7 @@ export function Form(){
         if(image.length == 1){
             const imageBlob =  new Blob([image[0]],{type:'image/bmp'})
             const imageBlobURL =  URL.createObjectURL(imageBlob)
-            const link =  document.createElement('a')
-            link.href = imageBlobURL
-            const imageUrl = link.download = `image.${image[0].name.slice(-3)}`
-            imageUrl
-            link.click()
-            alert(imageUrl)
-
+            setImageUrl(imageBlobURL)
         }
     }
     return(
@@ -53,7 +46,7 @@ export function Form(){
                     />
                 </div>
                 <div>
-                    <ButtonCustom 
+                    <ButtonCustom
                         title="Escolher foto para o evento"
                         onClick={e => handleClickToSelectImage(e.nativeEvent)}
                     />
